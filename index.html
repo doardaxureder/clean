@@ -27,10 +27,9 @@
 
     </main>
 
-    <footer>
-        <br><br><br><br><br><br><br>  <br><br>
+    
         <div id="creditos">FEITO POR: MALU E DUDA</div>
-    </footer>
+    
 
     <script>
         let nomesdostimes = []; // Um array para armazenar os nomes dos times
@@ -136,7 +135,7 @@
             const botaozinho = document.createElement('select');
             botaozinho.id = `botaozinho${nomeTime1}_${nomeTime2}`;
 
-            const opcoes = ['Pontuao', 'Ganhou', 'Perdeu', 'Empate'];
+            const opcoes = ['Pontucao', 'Ganhou', 'Perdeu', 'Empate'];
             opcoes.forEach(opcao => {
                 const opcaoOption = document.createElement('option');
                 opcaoOption.value = opcao;
@@ -203,7 +202,8 @@
     margin: 0; /* Remova margens padrão */
 }
 
-body {
+
+body{
     background: linear-gradient(#25BEFF, rgba(0, 0, 0)) no-repeat;
 }
         header{
@@ -360,10 +360,161 @@ select[id^="botaozinho"] option {
     font-family: 'soccereto'; /* Defina a fonte desejada */
 }
 
+
+
+
+
+/*MEDIA SCREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEN*/
 @media screen and (max-width: 600px) {
+
+    #textoemcima{
+            font-family: soccer;
+            margin-left: 2vw;
+            font-size: 5vw;
+            color: white;
+            text-shadow:  #000 0.2vw 0.3vw 0.2vw;
+            margin-top: 5vw;
+        }
+
+    #qtij{
+        margin-top: 10vw;
+
+            font-family: soccereto;
+            margin-left: 2vw;
+            font-size: 7vw;
+            color: white;
+            text-shadow:  #000 0.2vw 0.3vw 0.2vw;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #numJogadores{
+            font-family: soccereto;
+            border-radius: 2vw;
+            width: 35vw;
+            height: 9vw;
+            background-color: #ffe483;
+            box-shadow:  #000 0.2vw 0.3vw 0.2vw;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20vw;
+
+        }
+
+        #pedro{ /*carregar*/
+            font-family: soccereto;
+            margin-bottom: 8vw;
+            border-radius: 2vw;
+            width: 35vw;
+            height: 8vw;
+            background-color: #ffe483;
+            box-shadow:  #000 0.2vw 0.3vw 0.2vw;
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
+
+
+        #createfields{
+        
+
+        font-family: soccereto;
+        margin-bottom: 8vw;
+        border-radius: 2vw;
+        width: 35vw;
+            height: 8vw;
+        background-color: #ffe483;
+        box-shadow:  #000 0.2vw 0.3vw 0.2vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #xureder{
+        margin-bottom: 50vw;
+
+    }
+
+    /*PAGINA 2*/
+
+    #xureder{
+        margin-bottom: 10vw;
+
+    }
+
+
+    .aluno-input{ /*nome do time*/
+            font-family: soccereto;
+            border-radius: 2vw;
+            width: 35vw;
+            height: 8vw;
+            background-color: #ffe483;
+            box-shadow:  #000 0.2vw 0.3vw 0.2vw;
+            margin-left: auto; 
+            margin-right: auto;
+            text-align: center;
+            align-items: center;
+        }
+
+        #botaopg2{
+            font-family: soccereto;
+            border-radius: 2vw;
+            width: 35vw;
+            height: 8vw;
+            background-color: #ffe483;
+            box-shadow:  #000 0.2vw 0.3vw 0.2vw;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 4vw;
+        }
+   
+
+        .partidas{
+            margin-bottom: 10vw;
+            color: white;
+            font-family: soccereto;
+            background-color: #ffe483;
+            border-radius: 1.7vw;
+            box-shadow:  #000 0.2vw 0.3vw 0.2vw;
+        }
+
+
+/*PAGINA 3*/
+
+
+select[id^="botaozinho"] {
+    font-family: 'soccereto'; /* Defina a fonte desejada */
+    border: 0.1vw solid #ccc;
+    border-radius: 0.3vw;
+    width: auto;
+    height: 3vw;
+    background-color: #ffe483;
+    color: black;
+    cursor: pointer;
+    margin-right: 0.7vw;
+}
+
+/* Estilize as opções do menu suspenso (select) */
+select[id^="botaozinho"] option {
+    background-color: white;
+    color: black;
+    font-family: 'soccereto'; /* Defina a fonte desejada */
+}
+
+
+
     #teste {
         display: none; /* Oculta a imagem quando a tela é menor que 600px */
     }
+
+    #creditos{
+            color: #ccc;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            align-items: center;
+            font-family: soccereto;
+            margin-top: 80vw;
+        }
 }
         
 
