@@ -6,26 +6,186 @@
     <title>Document</title>
 </head>
 <body>
-        <header> 
-            <div class="loguinho"><img src="loguinho.png"></div>
-            <div class="textoemcima"><p>Bem vindo aos jogos de volei da 2C</p>
+    <header> 
+        <div id="loguinho"><img id="loguinho" src="loguinho.png"></div>
+        <div id="textoemcima"><p>Bem vindo aos jogos de volei da 2C</p></div>
+    </header>
 
+    <main>
+        <div id="qtij">
+            <p>Quantos times irao Jogar?</p>
+            <input id="numJogadores" type="number">
+            <div id="players"></div>  
+            <div id="xureder">
+                <input id="pedro" type="button" value="Carregar">
+                <input id="createfields" type="button" value="Iniciar">
             </div>
-          </header>
+        </div>
+        <div id="carinha1"><img id="teste" src="femea11.png"></div>
 
-          <main>
-            <div class="qtij"><p>Quantos times irao Jogar?</p><input class="pedro" type="number"><div class="xureder"><input class="pedro" type="button" value="Carregar"><input class="pedro" type="button" value="Iniciar"></div></div>
+        <div id="outputDiv"></div>
+
+    </main>
+
+    <footer>
+        <br><br><br><br><br><br><br>  <br><br>
+        <div id="creditos">FEITO POR: MALU E DUDA</div>
+    </footer>
+
+    <script>
+        let nomesdostimes = []; // Um array para armazenar os nomes dos times
+
+        //AQUI TIRA AS COISAS
+        const createfields = document.getElementById('createfields');
+        const players = document.getElementById('players');
+        const pedroButton = document.getElementById('pedro');
+        const numeroJogadoresInput = document.getElementById('numJogadores');
+
+        //FUNÇÃO
+        createfields.addEventListener ('click', function() {
+            players.innerHTML = ''; // Limpa os campos existentes
+
+            const numJogadores = parseInt(numeroJogadoresInput.value, 10);
+
+            for (let i = 1; i <= numJogadores; i++) { 
+                const input = document.createElement('input'); 
+                input.type = 'text';
+                input.id = 'Jogador' + i;
+                input.placeholder = 'Nome do Time ' + i;
+                input.required = true;
+                input.classList.add('aluno-input');
+
+                players.appendChild(input);
+                players.appendChild(document.createElement('br'));
+            }
+
+            document.querySelector('#qtij p').textContent = 'Informe os nomes dos times/jogadores:';
+
+            //AQUI É O BOTAO 2, APARECE NA SEGUNDA COISINHA
+            const input = document.createElement('input');
+            input.type = 'button';
+            input.name = 'aaaa';
+            input.id = 'botaopg2'
+            input.value = 'START'
+
+            //imagem troca
+            const imagem = document.getElementById('teste')
+            imagem.setAttribute('src', 'femeas.png');
+            players.appendChild(input);
+
+            // Esconde os botões após clicar em "Iniciar"
+            pedroButton.style.display = 'none';
+            createfields.style.display = 'none';
+            numeroJogadoresInput.style.display = 'none';
+
+
+
+
+        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA            
+
             
-            <div class="carinha1"><img src="femea11.png"></div>
+            
+            //Esconde as coisas da segunda página
+            botaopg2.addEventListener('click', function() {
+                botaopg2.style.display =  'none';
+                players.style.display = 'none';
+                document.querySelector('#qtij p').textContent = 'Veja as partidas formadas:';
+            });
+            const outputDiv = document.createElement('div');
+            outputDiv.id = 'outputDiv';
+            document.querySelector('#qtij').appendChild(outputDiv);
 
-          </main>
 
-          <footer>
-            <br><br><br><br>
-            <br><br>
-            <br>
-            <br>
-          </footer>
+            
+
+
+
+
+
+           
+            document.querySelector('#botaopg2').addEventListener('click', function() {
+                armazenarNomes(numJogadores);
+
+                
+            });
+
+            function armazenarNomes(numJogadores) {
+                for (let i = 1; i <= numJogadores; i++) {
+                    let Jogador = document.querySelector('#Jogador' + i).value;
+                    nomesdostimes.push(Jogador);
+                }
+                console.log(nomesdostimes); 
+                    for (i = 0; i <= nomesdostimes.length - 2; i++) {
+                    for (j = i + 1; j <= nomesdostimes.length - 1; j++) {
+                        //imprimirJogo(nomesdostimes[i], nomesdostimes[j]);
+                        console.log(nomesdostimes[i] + " VS " + nomesdostimes[j]);
+                        
+                        function mostrarPartidas() {
+    const partidasDiv = document.getElementById('outputDiv');
+    partidasDiv.innerHTML = ''; // Limpa o conteúdo anterior, se houver
+
+    for (let i = 0; i <= nomesdostimes.length - 2; i++) {
+        for (let j = i + 1; j <= nomesdostimes.length - 1; j++) {
+            const partida = document.createElement('div');
+            partida.className = 'partidas';
+
+            const nomeTime1 = nomesdostimes[i];
+            const nomeTime2 = nomesdostimes[j];
+
+            // Crie um menu suspenso (select) para as opções "Ganhou", "Perdeu" e "Empate"
+            const botaozinho = document.createElement('select');
+            botaozinho.id = `botaozinho${nomeTime1}_${nomeTime2}`;
+
+            const opcoes = ['Pontuao', 'Ganhou', 'Perdeu', 'Empate'];
+            opcoes.forEach(opcao => {
+                const opcaoOption = document.createElement('option');
+                opcaoOption.value = opcao;
+                opcaoOption.textContent = opcao;
+                botaozinho.appendChild(opcaoOption);
+            });
+
+            botaozinho.addEventListener('change', function () {
+                const resultado = botaozinho.value;
+                console.log(`${nomeTime1} ${resultado} contra ${nomeTime2}`);
+            });
+
+            partida.textContent = `${nomeTime1} VS ${nomeTime2}`;
+            partida.appendChild(botaozinho);
+            partidasDiv.appendChild(partida);
+        }
+    }
+}
+
+                        mostrarPartidas();
+
+
+
+
+                        
+
+                    };
+                };
+            }
+
+            function mostrarOpcoesTime(nomeTime) {
+                // Crie elementos para as opções (Ganhou, Perdeu, Empate) e mostre-os ao lado do nome do time
+                const opcoesDiv = document.createElement('div');
+                opcoesDiv.className = 'opcoes-time';
+                opcoesDiv.innerHTML = `
+                    <p>${nomeTime}:</p>
+                    <button>Ganhou</button>
+                    <button>Perdeu</button>
+                    <button>Empate</button>
+                `;
+                outputDiv.appendChild(opcoesDiv);
+            }
+        });
+
+      
+
+
+    </script>
+
 
     <style>
         @font-face {
@@ -43,8 +203,8 @@
         }
 
         header{
-            margin-top: 30px;
-            margin-left: 10px;
+            margin-top: 3vw;
+            margin-left: 1vw;
             display: flex;
             flex-direction: row;
         }
@@ -54,40 +214,156 @@
             justify-content: center;
         }
         
-        .textoemcima{
+        #textoemcima{
             font-family: soccer;
-            margin-left: 20px;
-            font-size: 32px;
+            margin-left: 2vw;
+            font-size: 2.5vw;
             color: white;
-            text-shadow:  #000 2px 3px 2px;
+            text-shadow:  #000 0.2vw 0.3vw 0.2vw;
         }
-        .qtij{
+        #qtij{
             font-family: soccereto;
-            margin-left: 20px;
-            font-size: 40px;
+            margin-left: 2vw;
+            font-size: 2vw;
             color: white;
-            text-shadow:  #000 2px 3px 2px;
+            text-shadow:  #000 0.2vw 0.3vw 0.2vw;
             display: flex;
             flex-direction: column;
         }
 
-        .pedro{
+        #pedro{ /*carregar*/
             font-family: soccereto;
-            margin-bottom: 80px;
-            border-radius: 20px;
-            width: 150px;
-            height: 40px;
+            margin-bottom: 8vw;
+            border-radius: 2vw;
+            width: 10vw;
+            height: 2.8vw;
             background-color: #ffe483;
-            box-shadow:  #000 2px 3px 2px;
+            box-shadow:  #000 0.2vw 0.3vw 0.2vw;
             margin-left: auto;
             margin-right: auto;
             
         }
 
-        .xureder{
+        #xureder{
             display: flex;
+            margin-top: 5vw;
         }
 
+        #numJogadores{
+            font-family: soccereto;
+            border-radius: 2vw;
+            width: 10vw;
+            height: 3vw;
+            background-color: #ffe483;
+            box-shadow:  #000 0.2vw 0.3vw 0.2vw;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 4vw;
+        }
+
+        #createfields{
+        
+
+            font-family: soccereto;
+            margin-bottom: 8vw;
+            border-radius: 2vw;
+            width: 10vw;
+            height: 2.8vw;
+            background-color: #ffe483;
+            box-shadow:  #000 0.2vw 0.3vw 0.2vw;
+            margin-left: auto;
+            margin-right: auto;
+        }
+       
+
+        #players{
+            font-family: soccereto;
+            border-radius: 2vw;
+            margin-left: auto; 
+            margin-right: auto;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+             
+        }
+
+        .aluno-input{ /*nome do time*/
+            font-family: soccereto;
+            border-radius: 2vw;
+            width: 15vw;
+            height: 3vw;
+            background-color: #ffe483;
+            box-shadow:  #000 0.2vw 0.3vw 0.2vw;
+            margin-left: auto; 
+            margin-right: auto;
+            text-align: center;
+            align-items: center;
+        }
+
+        #botaopg2{
+            font-family: soccereto;
+            border-radius: 2vw;
+            width: 10vw;
+            height: 3vw;
+            background-color: #ffe483;
+            box-shadow:  #000 0.2vw 0.3vw 0.2vw;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 4vw;
+        }
+
+        #creditos{
+            color: #ffe483;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            align-items: center;
+            font-family: soccereto;
+        }
+
+        .partidas{
+            margin-top: 1.4vw;
+            color: white;
+            font-family: soccereto;
+            background-color: #ffe483;
+            border-radius: 1.7vw;
+            box-shadow:  #000 0.2vw 0.3vw 0.2vw;
+        }
+
+        #outputDiv {
+            text-align: center;
+            align-items: center;
+            border-radius: 1.7vw;
+
+        }
+
+        select[id^="botaozinho"] {
+    font-family: 'soccereto'; /* Defina a fonte desejada */
+    border: 0.1vw solid #ccc;
+    border-radius: 0.3vw;
+    width: 12vw;
+    height: 3vw;
+    background-color: #ffe483;
+    color: black;
+    cursor: pointer;
+    margin-right: 0.7vw;
+}
+
+/* Estilize as opções do menu suspenso (select) */
+select[id^="botaozinho"] option {
+    background-color: white;
+    color: black;
+    font-family: 'soccereto'; /* Defina a fonte desejada */
+}
+
+@media screen and (max-width: 600px) {
+    #teste {
+        display: none; /* Oculta a imagem quando a tela é menor que 600px */
+    }
+}
+        
+
+        
     </style>
 </body>
 </html>
